@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Calendário Estratégico 2026 — Barreto Imóveis</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Montserrat',sans-serif;background:#EEEEEE;color:#0C0C0C;padding:0 16px 32px}
+.container{max-width:1200px;margin:0 auto}
+.header{background:#AF2846;color:#FFF;padding:28px 32px;border-radius:0 0 8px 8px;margin-bottom:24px;position:relative}
+.header-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
+.logo-area{display:flex;align-items:center;gap:12px}
+.logo-symbol{width:42px;height:42px;background:#FFF;border-radius:6px;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.logo-symbol img{width:100%;height:100%;object-fit:cover}
+.logo-text{display:flex;flex-direction:column}
+.logo-text-main{font-size:20px;font-weight:700;letter-spacing:-0.3px;line-height:1}
+.logo-text-sub{font-size:13px;font-weight:400;opacity:.85;margin-top:2px}
+.header-title{font-size:16px;font-weight:600;letter-spacing:-0.2px;margin-bottom:6px}
+.header-subtitle{font-size:13px;font-weight:400;opacity:.85}
+.month-nav{background:#FFF;padding:16px 24px;margin-bottom:16px;border-radius:8px;box-shadow:0 1px 3px rgba(0,0,0,.08)}
+.month-nav-label{font-size:11px;font-weight:600;color:#74746E;text-transform:uppercase;letter-spacing:.5px;margin-bottom:10px}
+.month-nav-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(90px,1fr));gap:8px}
+.month-btn{font-family:'Montserrat',sans-serif;padding:8px 12px;border-radius:6px;border:1.5px solid #EEEEEE;font-size:12px;font-weight:500;cursor:pointer;background:#FFF;color:#74746E;transition:all .2s;text-align:center}
+.month-btn:hover{background:#EEEEEE;border-color:#AF2846}
+.month-btn.active{background:#AF2846;color:#FFF;border-color:#AF2846}
+.filters-section{background:#FFF;padding:20px 24px;margin-bottom:16px;border-radius:8px;box-shadow:0 1px 3px rgba(0,0,0,.08)}
+.filters-label{font-size:12px;font-weight:600;color:#74746E;text-transform:uppercase;letter-spacing:.5px;margin-bottom:10px}
+.filters{display:flex;gap:8px;flex-wrap:wrap}
+.pill{padding:6px 16px;border-radius:20px;border:1.5px solid #EEEEEE;font-size:13px;font-weight:500;cursor:pointer;background:#FFF;color:#74746E;transition:all .2s;letter-spacing:-.2px}
+.pill:hover{background:#EEEEEE}
+.pill.active{background:#AF2846;color:#FFF;border-color:#AF2846}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;margin-bottom:20px}
+.stat{background:#FFF;border-radius:8px;padding:18px 20px;box-shadow:0 1px 3px rgba(0,0,0,.08);border-left:3px solid #AF2846}
+.stat-n{font-size:28px;font-weight:700;color:#0C0C0C;letter-spacing:-.5px;line-height:1}
+.stat-l{font-size:11px;font-weight:500;color:#74746E;margin-top:4px;text-transform:uppercase;letter-spacing:.4px}
+.search-wrap{background:#FFF;padding:16px 24px;margin-bottom:16px;border-radius:8px;box-shadow:0 1px 3px rgba(0,0,0,.08)}
+.search-bar{position:relative}
+.search-bar input{width:100%;font-family:'Montserrat',sans-serif;font-size:14px;padding:10px 16px 10px 40px;border:1.5px solid #EEEEEE;border-radius:6px;background:#FFF;color:#0C0C0C;transition:border .2s}
+.search-bar input:focus{outline:none;border-color:#AF2846}
+.search-bar::before{content:'🔍';position:absolute;left:14px;top:50%;transform:translateY(-50%);font-size:14px;opacity:.5}
+.list{display:flex;flex-direction:column;gap:12px}
+.card{background:#FFF;border-radius:8px;padding:20px 24px;border-left:4px solid #AF2846;box-shadow:0 1px 3px rgba(0,0,0,.08);transition:all .2s}
+.card:hover{box-shadow:0 2px 8px rgba(0,0,0,.12)}
+.card-top{display:flex;align-items:flex-start;gap:16px;margin-bottom:16px}
+.card-date{font-size:12px;font-weight:700;color:#AF2846;min-width:76px;padding-top:3px;letter-spacing:.3px}
+.card-info{flex:1;min-width:0}
+.card-desc{font-size:16px;font-weight:600;color:#0C0C0C;line-height:1.3;letter-spacing:-.2px}
+.card-meta{display:flex;gap:8px;margin-top:8px;flex-wrap:wrap;align-items:center}
+.badge{font-size:11px;padding:4px 10px;border-radius:12px;font-weight:600;letter-spacing:.3px}
+.badge-mun{background:#EEEEEE;color:#74746E}
+.badge-est{background:#EEEEEE;color:#74746E}
+.badge-nac{background:#EEEEEE;color:#74746E}
+.badge-set{background:#AF2846;color:#FFF}
+.badge-imp-high{background:#AF2846;color:#FFF}
+.badge-imp-med{background:#EEEEEE;color:#74746E}
+.badge-imp-low{background:#EEEEEE;color:#74746E}
+.card-right{min-width:160px}
+.status-sel{font-family:'Montserrat',sans-serif;font-size:13px;border:1.5px solid #EEEEEE;border-radius:6px;padding:8px 12px;background:#FFF;color:#0C0C0C;cursor:pointer;width:100%;font-weight:500;transition:border .2s}
+.status-sel:focus{outline:none;border-color:#AF2846}
+.card-body{border-top:1.5px solid #EEEEEE;padding-top:16px;display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.field-group{display:flex;flex-direction:column;gap:6px}
+.field-group.full{grid-column:1/-1}
+.field-label{font-size:11px;font-weight:600;color:#74746E;text-transform:uppercase;letter-spacing:.5px}
+.field-inp{font-family:'Montserrat',sans-serif;font-size:13px;border:1.5px solid #EEEEEE;border-radius:6px;padding:8px 12px;background:#FFF;color:#0C0C0C;width:100%;transition:border .2s}
+.field-inp:focus{outline:none;border-color:#AF2846}
+textarea.field-inp{resize:vertical;min-height:60px;line-height:1.5;font-weight:400}
+.inv-wrap{display:flex;align-items:center;gap:8px}
+.inv-prefix{font-size:13px;font-weight:600;color:#74746E}
+.escolha-row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.escolha-btn{font-family:'Montserrat',sans-serif;font-size:12px;padding:6px 14px;border-radius:20px;border:1.5px solid #EEEEEE;cursor:pointer;background:#FFF;color:#74746E;transition:all .2s;font-weight:500}
+.escolha-btn:hover{background:#EEEEEE}
+.escolha-btn.sel-1,.escolha-btn.sel-2{background:#AF2846;color:#FFF;border-color:#AF2846}
+.escolha-status{font-size:11px;color:#74746E;font-weight:500}
+.border-mun{border-left-color:#74746E}
+.border-est{border-left-color:#74746E}
+.border-nac{border-left-color:#74746E}
+.border-set{border-left-color:#AF2846}
+.card[data-status="realizado"]{background:linear-gradient(to right,#f0fdf4 0%,#FFF 8px);border-left-color:#22c55e}
+.card[data-status="andamento"]{background:linear-gradient(to right,#eff6ff 0%,#FFF 8px);border-left-color:#3b82f6}
+.card[data-status="pausado"]{background:linear-gradient(to right,#fefce8 0%,#FFF 8px);border-left-color:#eab308}
+.card[data-status="ignorado"]{opacity:.4}
+.month-sep{font-size:12px;font-weight:700;color:#AF2846;letter-spacing:.8px;text-transform:uppercase;padding:12px 0 8px;margin-top:12px;scroll-margin-top:20px}
+.month-sep:first-child{margin-top:0}
+.empty{text-align:center;padding:3rem;font-size:14px;color:#74746E;background:#FFF;border-radius:8px}
+.footer{background:#0C0C0C;color:#EEEEEE;padding:20px 32px;margin-top:32px;border-radius:8px 8px 0 0;text-align:center;font-size:12px;font-weight:400;opacity:.7}
+.back-to-top{position:fixed;bottom:24px;right:24px;width:50px;height:50px;background:#AF2846;color:#FFF;border:none;border-radius:50%;font-size:20px;cursor:pointer;box-shadow:0 4px 12px rgba(175,40,70,.3);transition:all .3s;opacity:0;pointer-events:none;display:flex;align-items:center;justify-content:center;font-weight:600;z-index:1000}
+.back-to-top.visible{opacity:1;pointer-events:all}
+.back-to-top:hover{background:#8F1E36;transform:translateY(-4px);box-shadow:0 6px 16px rgba(175,40,70,.4)}
+@media(max-width:768px){
+.card-body{grid-template-columns:1fr}
+.month-nav-grid{grid-template-columns:repeat(auto-fit,minmax(80px,1fr))}
+.stats{grid-template-columns:repeat(2,1fr)}
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+<div class="header" id="top">
+  <div class="header-top">
+    <div class="logo-area">
+      <img src="calendario/logo_barreto.png" alt="Barreto Imóveis" style="height: 42px; border-radius: 6px;">
+    </div>
+  </div>
+  <div class="header-title">Calendário Estratégico 2026</div>
+  <div class="header-subtitle">Planejamento anual de datas comerciais e oportunidades de mercado</div>
+</div>
+
+<div class="month-nav">
+  <div class="month-nav-label">Navegação rápida por mês</div>
+  <div class="month-nav-grid" id="monthNav"></div>
+</div>
+
+<div class="filters-section">
+  <div class="filters-label">Filtrar por categoria</div>
+  <div class="filters" id="filters">
+    <span class="pill active" data-filter="all">Todos</span>
+    <span class="pill" data-filter="mun">Municipal</span>
+    <span class="pill" data-filter="est">Estadual</span>
+    <span class="pill" data-filter="nac">Nacional</span>
+    <span class="pill" data-filter="set">Setorial</span>
+    <span class="pill" data-filter="pendente">Pendentes</span>
+    <span class="pill" data-filter="realizado">Realizados</span>
+  </div>
+</div>
+
+<div class="stats" id="stats"></div>
+
+<div class="search-wrap">
+  <div class="search-bar">
+    <input type="text" id="search" placeholder="Buscar por descrição, categoria ou mês..." />
+  </div>
+</div>
+
+<div class="list" id="list"></div>
+
+<div class="footer">
+  Barreto Imóveis · Jundiaí · SP · 2026
+</div>
+
+<button class="back-to-top" id="backToTop" onclick="scrollToTop()">↑</button>
+</div>
+
+<script>
+const DATA=[
+  {id:0,data:"01/01",mes:"Janeiro",tipo:"mun",cat:"Feriado",desc:"Confraternização Universal",imp:"high"},
+  {id:1,data:"12/01",mes:"Janeiro",tipo:"set",cat:"Oportunidade",desc:"Férias / mudança de ciclo",imp:"high"},
+  {id:2,data:"10/03",mes:"Março",tipo:"set",cat:"Oportunidade",desc:"Período do IR — movimentações financeiras",imp:"med"},
+  {id:3,data:"03/04",mes:"Abril",tipo:"mun",cat:"Feriado",desc:"Paixão de Cristo — Jundiaí",imp:"high"},
+  {id:4,data:"21/04",mes:"Abril",tipo:"nac",cat:"Feriado",desc:"Tiradentes",imp:"med"},
+  {id:5,data:"01/05",mes:"Maio",tipo:"nac",cat:"Feriado",desc:"Dia do Trabalho",imp:"high"},
+  {id:6,data:"10/05",mes:"Maio",tipo:"set",cat:"Comercial",desc:"Dia das Mães (2º domingo)",imp:"high"},
+  {id:7,data:"04/06",mes:"Junho",tipo:"mun",cat:"Feriado",desc:"Corpus Christi — Jundiaí",imp:"med"},
+  {id:8,data:"12/06",mes:"Junho",tipo:"set",cat:"Comercial",desc:"Dia dos Namorados",imp:"med"},
+  {id:9,data:"09/07",mes:"Julho",tipo:"est",cat:"Feriado",desc:"Revolução Constitucionalista de 1932",imp:"med"},
+  {id:10,data:"10/07",mes:"Julho",tipo:"set",cat:"Oportunidade",desc:"Férias / período de mudanças",imp:"high"},
+  {id:11,data:"09/08",mes:"Agosto",tipo:"set",cat:"Comercial",desc:"Dia dos Pais (2º domingo)",imp:"med"},
+  {id:12,data:"15/08",mes:"Agosto",tipo:"mun",cat:"Feriado",desc:"N. Sra. do Desterro — Padroeira",imp:"high"},
+  {id:13,data:"25/08",mes:"Agosto",tipo:"set",cat:"Imobiliário",desc:"Dia Nacional da Habitação",imp:"high"},
+  {id:14,data:"27/08",mes:"Agosto",tipo:"set",cat:"Imobiliário",desc:"Dia do Corretor de Imóveis",imp:"high"},
+  {id:15,data:"07/09",mes:"Setembro",tipo:"nac",cat:"Feriado",desc:"Independência do Brasil",imp:"med"},
+  {id:16,data:"15/09",mes:"Setembro",tipo:"set",cat:"Imobiliário",desc:"Dia do Cliente",imp:"high"},
+  {id:17,data:"12/10",mes:"Outubro",tipo:"nac",cat:"Feriado",desc:"Nossa Senhora Aparecida",imp:"med"},
+  {id:18,data:"01/10",mes:"Outubro",tipo:"set",cat:"Imobiliário",desc:"Mês da Engenharia & Arquitetura",imp:"low"},
+  {id:19,data:"02/11",mes:"Novembro",tipo:"nac",cat:"Feriado",desc:"Finados",imp:"med"},
+  {id:20,data:"15/11",mes:"Novembro",tipo:"nac",cat:"Feriado",desc:"Proclamação da República",imp:"med"},
+  {id:21,data:"20/11",mes:"Novembro",tipo:"nac",cat:"Feriado",desc:"Consciência Negra",imp:"med"},
+  {id:22,data:"27/11",mes:"Novembro",tipo:"set",cat:"Comercial",desc:"Black Friday — conversão",imp:"high"},
+  {id:23,data:"10/12",mes:"Dezembro",tipo:"set",cat:"Oportunidade",desc:"Encerramento de ciclo",imp:"high"},
+  {id:24,data:"25/12",mes:"Dezembro",tipo:"nac",cat:"Feriado",desc:"Natal",imp:"high"},
+];
+
+const MESES=["Janeiro","Março","Abril","Maio","Junho","Julho","Agosto","Setembro","Outubro","Novembro","Dezembro"];
+const LABEL={mun:"Municipal",est:"Estadual",nac:"Nacional",set:"Setorial"};
+const IMP_LABEL={high:"Alto",med:"Médio",low:"Baixo"};
+const STATUS_OPTS=[
+  {v:"",l:"— Pendente"},
+  {v:"realizado",l:"✓ Realizado"},
+  {v:"andamento",l:"⟳ Em andamento"},
+  {v:"pausado",l:"⏸ Pausado"},
+  {v:"ignorado",l:"✕ Ignorado"},
+];
+
+let state=DATA.map(d=>({...d,status:"",investimento:"",ideia1:"",ideia2:"",escolhida:""}));
+let filter="all",search="";
+
+// LocalStorage persistence
+function saveState(){
+  localStorage.setItem("barreto_calendario_2026",JSON.stringify(state));
+}
+
+function loadState(){
+  const saved=localStorage.getItem("barreto_calendario_2026");
+  if(saved){
+    try{
+      const loaded=JSON.parse(saved);
+      if(loaded.length===state.length){
+        state=loaded;
+      }
+    }catch(e){}
+  }
+}
+
+function renderMonthNav(){
+  const el=document.getElementById("monthNav");
+  el.innerHTML=MESES.map(m=>`<button class="month-btn" onclick="scrollToMonth('${m}')">${m}</button>`).join("");
+}
+
+function scrollToMonth(mes){
+  const el=document.querySelector(`[data-month="${mes}"]`);
+  if(el){
+    el.scrollIntoView({behavior:"smooth",block:"start"});
+    document.querySelectorAll(".month-btn").forEach(b=>b.classList.remove("active"));
+    event.target.classList.add("active");
+  }
+}
+
+function scrollToTop(){
+  document.getElementById("top").scrollIntoView({behavior:"smooth",block:"start"});
+}
+
+window.addEventListener("scroll",()=>{
+  const btn=document.getElementById("backToTop");
+  if(window.scrollY>300){
+    btn.classList.add("visible");
+  }else{
+    btn.classList.remove("visible");
+  }
+});
+
+function getStats(){
+  const total=state.length;
+  const realizado=state.filter(d=>d.status==="realizado").length;
+  const andamento=state.filter(d=>d.status==="andamento").length;
+  const pendente=state.filter(d=>!d.status).length;
+  const investTotal=state.reduce((acc,d)=>{
+    const v=parseFloat((d.investimento||"").replace(",","."));
+    return acc+(isNaN(v)?0:v);
+  },0);
+  return{total,realizado,andamento,pendente,investTotal};
+}
+
+function renderStats(){
+  const s=getStats();
+  const pct=s.total?Math.round(s.realizado/s.total*100):0;
+  const inv=s.investTotal.toLocaleString("pt-BR",{minimumFractionDigits:2,maximumFractionDigits:2});
+  document.getElementById("stats").innerHTML=`
+    <div class="stat"><div class="stat-n">${s.total}</div><div class="stat-l">Total de datas</div></div>
+    <div class="stat"><div class="stat-n">${s.realizado}</div><div class="stat-l">Realizadas</div></div>
+    <div class="stat"><div class="stat-n">${s.andamento}</div><div class="stat-l">Em andamento</div></div>
+    <div class="stat"><div class="stat-n">${s.pendente}</div><div class="stat-l">Pendentes</div></div>
+    <div class="stat"><div class="stat-n">${pct}%</div><div class="stat-l">Progresso</div></div>
+    <div class="stat"><div class="stat-n" style="font-size:20px">R$ ${inv}</div><div class="stat-l">Investimento</div></div>
+  `;
+}
+
+function matches(d){
+  if(filter==="pendente"&&d.status) return false;
+  if(filter==="realizado"&&d.status!=="realizado") return false;
+  if(["mun","est","nac","set"].includes(filter)&&d.tipo!==filter) return false;
+  if(search){
+    const q=search.toLowerCase();
+    return d.desc.toLowerCase().includes(q)||d.mes.toLowerCase().includes(q)||LABEL[d.tipo].toLowerCase().includes(q)||d.cat.toLowerCase().includes(q);
+  }
+  return true;
+}
+
+function renderList(){
+  const el=document.getElementById("list");
+  const visible=state.filter(matches);
+  if(!visible.length){el.innerHTML='<div class="empty">Nenhuma data encontrada.</div>';return;}
+
+  let html="";
+  let lastMes="";
+  visible.forEach(d=>{
+    if(d.mes!==lastMes){
+      html+=`<div class="month-sep" data-month="${d.mes}">${d.mes} 2026</div>`;
+      lastMes=d.mes;
+    }
+    const statusAttr=d.status?`data-status="${d.status}"`:"";
+    const opts=STATUS_OPTS.map(o=>`<option value="${o.v}"${d.status===o.v?" selected":""}>${o.l}</option>`).join("");
+    const b1cls="escolha-btn"+(d.escolhida==="1"?" sel-1":"");
+    const b2cls="escolha-btn"+(d.escolhida==="2"?" sel-2":"");
+
+    html+=`<div class="card border-${d.tipo}" ${statusAttr} id="card-${d.id}">
+      <div class="card-top">
+        <div class="card-date">${d.data}</div>
+        <div class="card-info">
+          <div class="card-desc">${d.desc}</div>
+          <div class="card-meta">
+            <span class="badge badge-${d.tipo}">${LABEL[d.tipo]}</span>
+            <span class="badge badge-${d.tipo}">${d.cat}</span>
+            <span class="badge badge-imp-${d.imp}">Impacto ${IMP_LABEL[d.imp]}</span>
+          </div>
+        </div>
+        <div class="card-right">
+          <select class="status-sel" data-id="${d.id}" onchange="updateStatus(this)">${opts}</select>
+        </div>
+      </div>
+
+      <div class="card-body">
+        <div class="field-group">
+          <div class="field-label">Investimento</div>
+          <div class="inv-wrap">
+            <span class="inv-prefix">R$</span>
+            <input class="field-inp" type="number" min="0" step="0.01" placeholder="0,00" value="${d.investimento}" data-id="${d.id}" data-field="investimento" onchange="updateField(this)" oninput="updateField(this)" style="max-width:130px"/>
+          </div>
+        </div>
+
+        <div class="field-group">
+          <div class="field-label">Status atual</div>
+          <div style="font-size:13px;color:#74746E;padding-top:8px;font-weight:500">${d.status?STATUS_OPTS.find(o=>o.v===d.status)?.l.replace(/^[✓⟳⏸✕]\s/,""):"Pendente"}</div>
+        </div>
+
+        <div class="field-group full">
+          <div class="field-label">Ideia de ação 1</div>
+          <textarea class="field-inp" placeholder="Descreva a primeira ideia de campanha ou ação..." data-id="${d.id}" data-field="ideia1" onchange="updateField(this)">${d.ideia1}</textarea>
+        </div>
+
+        <div class="field-group full">
+          <div class="field-label">Ideia de ação 2</div>
+          <textarea class="field-inp" placeholder="Descreva a segunda ideia de campanha ou ação..." data-id="${d.id}" data-field="ideia2" onchange="updateField(this)">${d.ideia2}</textarea>
+        </div>
+
+        <div class="field-group full">
+          <div class="field-label">Ideia escolhida</div>
+          <div class="escolha-row">
+            <button class="${b1cls}" data-id="${d.id}" data-escolha="1" onclick="updateEscolha(this)">Ideia 1</button>
+            <button class="${b2cls}" data-id="${d.id}" data-escolha="2" onclick="updateEscolha(this)">Ideia 2</button>
+            ${d.escolhida?`<span class="escolha-status">✓ Escolhida: Ideia ${d.escolhida}</span>`:""}
+          </div>
+        </div>
+      </div>
+    </div>`;
+  });
+  el.innerHTML=html;
+}
+
+function updateStatus(sel){
+  const id=+sel.dataset.id;
+  state[id].status=sel.value;
+  const card=document.getElementById("card-"+id);
+  card.removeAttribute("data-status");
+  if(sel.value) card.setAttribute("data-status",sel.value);
+  saveState();
+  renderStats();
+  renderList();
+}
+
+function updateField(inp){
+  const id=+inp.dataset.id;
+  state[id][inp.dataset.field]=inp.value;
+  if(inp.dataset.field==="investimento") renderStats();
+  saveState();
+}
+
+function updateEscolha(btn){
+  const id=+btn.dataset.id;
+  const escolha=btn.dataset.escolha;
+  state[id].escolhida=state[id].escolhida===escolha?"":escolha;
+  saveState();
+  renderList();
+}
+
+document.getElementById("filters").addEventListener("click",e=>{
+  if(!e.target.classList.contains("pill")) return;
+  document.querySelectorAll(".pill").forEach(p=>p.classList.remove("active"));
+  e.target.classList.add("active");
+  filter=e.target.dataset.filter;
+  renderList();
+});
+
+document.getElementById("search").addEventListener("input",e=>{
+  search=e.target.value;
+  renderList();
+});
+
+loadState();
+renderMonthNav();
+renderStats();
+renderList();
+</script>
+
+</body>
+</html>
